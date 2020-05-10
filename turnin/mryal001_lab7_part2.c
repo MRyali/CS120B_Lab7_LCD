@@ -1,14 +1,14 @@
 /*	Author: Mayur Ryali
- *  Partner(s) Name: 
- *	Lab Section:21
- *	Assignment: Lab #7  Exercise #2
+ *  Partner(s) Name:
+ *	Lab Section: 21
+ *	Assignment: Lab #7 Exercise #2
  *	Exercise Description: [optional - include for your own benefit]
  *
  *	I acknowledge all content contained herein, excluding template or example
  *	code, is my own original work.
  */
 
-// Demo: 
+// Demo: https://drive.google.com/open?id=10B8TpJxC_qLaQbtFya1L92sbIMxeI4pU
 
 #include <avr/io.h>
 #ifdef _SIMULATE_
@@ -22,7 +22,7 @@ unsigned char tempB = 0x00; //temp for Port B
 unsigned char button; //input from PA0
 unsigned char s = 0; //tracks if previous state was reset or not
 unsigned char tmp = 1;
-unsigned char score = 5; 
+unsigned char score = 5;
 
 void Tick() {
 	switch(state){
@@ -41,7 +41,7 @@ void Tick() {
 			}
 			else if (button && s == 1) { //previous state WAS reset
 				tmp = 0;
-				s = 0; //reset tracker 
+				s = 0; //reset tracker
 				state = light2;
 			}
 			else {
@@ -87,7 +87,7 @@ void Tick() {
 					score++;
 				}
 			}
-			else {	
+			else {
 				state = light1;
 			}
 			break;
@@ -108,7 +108,7 @@ void Tick() {
 			}
 			break;
 		case reset:
-		       	tmp = 1;	
+		       	tmp = 1;
 			s = 1;
 			state = light1;
 			break;
@@ -140,7 +140,7 @@ void Tick() {
 			break;
 		default:
 			break;
-	
+
 	}
 	/*
 	if (score == 9) {
@@ -167,11 +167,11 @@ int main(void) {
 
 	state = Start;
 	score = 5;
-		
+
 	while (1) {
 		LCD_Cursor(1);
 		button = ~PINA & 0x01; //PA0
-		
+
 		Tick();
 
 		if (score == 9) {
@@ -188,6 +188,6 @@ int main(void) {
 
 		PORTB = tempB;
    	}
-    
+
     	return 1;
 }
